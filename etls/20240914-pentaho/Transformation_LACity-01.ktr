@@ -501,6 +501,21 @@
       <to>Text file output Southwest</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Text file output Hollywood</from>
+      <to>Select values 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Text file output Pacific</from>
+      <to>Select values 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Text file output Newton</from>
+      <to>Select values 2</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>CSV file input</name>
@@ -862,7 +877,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Text file output Hollywood</send_true_to>
+    <send_true_to>Select values 2</send_true_to>
     <send_false_to>Filter rows Pacific</send_false_to>
     <compare>
       <condition>
@@ -950,7 +965,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Text file output Newton</send_true_to>
+    <send_true_to>Select values 2</send_true_to>
     <send_false_to>Filter rows Mission</send_false_to>
     <compare>
       <condition>
@@ -995,7 +1010,7 @@
       <schema_name/>
     </partitioning>
     <send_true_to>Text file output Pacific</send_true_to>
-    <send_false_to>Filter rows Newton</send_false_to>
+    <send_false_to>Select values 2 2</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -1255,7 +1270,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>896</xloc>
+      <xloc>944</xloc>
       <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1782,6 +1797,50 @@
     <GUI>
       <xloc>928</xloc>
       <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values 2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>DR_NO</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Date Rptd</name>
+        <rename/>
+      </field>
+      <field>
+        <name>AREA NAME</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Crm Cd Desc</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1168</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
