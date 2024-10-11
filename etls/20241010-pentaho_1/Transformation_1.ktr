@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Transformation_LACity-Compactar</name>
+    <name>Transformation_1</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -428,18 +428,113 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2024/09/14 14:46:15.757</created_date>
+    <created_date>2024/10/10 15:54:34.123</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2024/09/14 14:46:15.757</modified_date>
-    <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2024/10/10 15:54:34.123</modified_date>
+    <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
+  <connection>
+    <name>oracle/transformacion_1</name>
+    <server>localhost</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>/ORCL</database>
+    <port>1521</port>
+    <username>ETL</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce10beb79bf6</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>1521</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>STRICT_NUMBER_38_INTERPRETATION</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <order>
     <hop>
       <from>CSV file input</from>
       <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows Hollywood</from>
+      <to>Filter rows Pacific</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows Mission</from>
+      <to>Filter rows Rampart</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows Newton</from>
+      <to>Filter rows Mission</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows Pacific</from>
+      <to>Filter rows Newton</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows Rampart</from>
+      <to>Filter rows Southwest</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows Southwest</from>
+      <to>Filter rows Devonshire</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows Devonshire</from>
+      <to>Filter rows Olympic</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows Olympic</from>
+      <to>Filter rows Van Nuys</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -453,11 +548,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filter rows Hollywood</from>
-      <to>Filter rows Pacific</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Filter rows Pacific</from>
       <to>Text file output Pacific</to>
       <enabled>Y</enabled>
@@ -468,23 +558,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filter rows Pacific</from>
-      <to>Filter rows Newton</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Filter rows Newton</from>
-      <to>Filter rows Mission</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Filter rows Mission</from>
       <to>Text file output Mission</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Filter rows Mission</from>
-      <to>Filter rows Rampart</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -493,13 +568,23 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filter rows Rampart</from>
-      <to>Filter rows Southwest</to>
+      <from>Filter rows Southwest</from>
+      <to>Text file output Southwest</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filter rows Southwest</from>
-      <to>Text file output Southwest</to>
+      <from>Filter rows Devonshire</from>
+      <to>Text file output Devonshire</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows Olympic</from>
+      <to>Text file output Olympic</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows Van Nuys</from>
+      <to>Text file output Van Nuys</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -533,8 +618,23 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Text file output Devonshire</from>
+      <to>Text file output Full</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Text file output Olympic</from>
+      <to>Text file output Full</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Text file output Van Nuys</from>
+      <to>Text file output Full</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Text file output Full</from>
-      <to>Text file output Zip Full</to>
+      <to>Table output</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -882,8 +982,88 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>160</yloc>
+      <xloc>160</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>DR_NO</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Date Rptd</name>
+        <rename/>
+      </field>
+      <field>
+        <name>DATE OCC</name>
+        <rename/>
+      </field>
+      <field>
+        <name>TIME OCC</name>
+        <rename/>
+      </field>
+      <field>
+        <name>AREA</name>
+        <rename/>
+      </field>
+      <field>
+        <name>AREA NAME</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Rpt Dist No</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Part 1-2</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Crm Cd</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Crm Cd Desc</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Mocodes</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Vict Age</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Vict Sex</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -898,7 +1078,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Select values 2</send_true_to>
+    <send_true_to>Text file output Hollywood</send_true_to>
     <send_false_to>Filter rows Pacific</send_false_to>
     <compare>
       <condition>
@@ -926,8 +1106,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>176</yloc>
+      <xloc>656</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -970,8 +1150,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>720</xloc>
-      <yloc>544</yloc>
+      <xloc>672</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -986,7 +1166,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Select values 2</send_true_to>
+    <send_true_to>Text file output Newton</send_true_to>
     <send_false_to>Filter rows Mission</send_false_to>
     <compare>
       <condition>
@@ -1014,8 +1194,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>720</xloc>
-      <yloc>432</yloc>
+      <xloc>672</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1058,8 +1238,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>720</xloc>
-      <yloc>304</yloc>
+      <xloc>672</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1102,8 +1282,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>720</xloc>
-      <yloc>656</yloc>
+      <xloc>672</xloc>
+      <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1119,7 +1299,7 @@
       <schema_name/>
     </partitioning>
     <send_true_to>Text file output Southwest</send_true_to>
-    <send_false_to/>
+    <send_false_to>Filter rows Devonshire</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -1146,14 +1326,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>720</xloc>
-      <yloc>768</yloc>
+      <xloc>672</xloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
+    <name>Filter rows Devonshire</name>
+    <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1162,21 +1342,25 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>DR_NO</name>
-      </field>
-      <field>
-        <name>Date Rptd</name>
-      </field>
-      <field>
-        <name>AREA NAME</name>
-      </field>
-      <field>
-        <name>Crm Cd Desc</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
+    <send_true_to>Text file output Devonshire</send_true_to>
+    <send_false_to>Filter rows Olympic</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>AREA NAME</leftvalue>
+        <function>=</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>Devonshire</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask/>
+        </value>
+      </condition>
+    </compare>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1186,8 +1370,96 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>496</xloc>
-      <yloc>192</yloc>
+      <xloc>672</xloc>
+      <yloc>752</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter rows Olympic</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Text file output Olympic</send_true_to>
+    <send_false_to>Filter rows Van Nuys</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>AREA NAME</leftvalue>
+        <function>=</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>Olympic</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask/>
+        </value>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>864</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter rows Van Nuys</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Text file output Van Nuys</send_true_to>
+    <send_false_to/>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>AREA NAME</leftvalue>
+        <function>=</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>Van Nuys</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask/>
+        </value>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>976</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1216,7 +1488,112 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>C:\Users\bryan\repos-ucc\ucc-sd\data\Crime_Data_from_2020_to_Present_20240914-Hollywood.csv</name>
+      <name>C:\Users\bryan\repos-ucc\ucc-sd\data\Crime_Data_from_2020_to_Present_20241010-Hollywood.csv</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery/>
+    </file>
+    <fields>
+      <field>
+        <name>DR_NO</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>Date Rptd</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>22</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>AREA NAME</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>11</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Crm Cd Desc</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>56</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>928</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Text file output Mission</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <separator>;</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>C:\Users\bryan\repos-ucc\ucc-sd\data\Crime_Data_from_2020_to_Present_20241010-Mission.csv</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>csv</extention>
@@ -1292,112 +1669,7 @@
     </remotesteps>
     <GUI>
       <xloc>944</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Text file output Mission</name>
-    <type>TextFileOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <separator>;</separator>
-    <enclosure>"</enclosure>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding/>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>C:\Users\bryan\repos-ucc\ucc-sd\data\Crime_Data_from_2020_to_Present_20240914-Mission.csv</name>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>csv</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery/>
-    </file>
-    <fields>
-      <field>
-        <name>DR_NO</name>
-        <type>Integer</type>
-        <format>#</format>
-        <currency>$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>15</length>
-        <precision>0</precision>
-      </field>
-      <field>
-        <name>Date Rptd</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>22</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>AREA NAME</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>11</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>Crm Cd Desc</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>56</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>928</xloc>
-      <yloc>544</yloc>
+      <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1426,7 +1698,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>C:\Users\bryan\repos-ucc\ucc-sd\data\Crime_Data_from_2020_to_Present_20240914-Newton.csv</name>
+      <name>C:\Users\bryan\repos-ucc\ucc-sd\data\Crime_Data_from_2020_to_Present_20241010-Newton.csv</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>csv</extention>
@@ -1501,8 +1773,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>928</xloc>
-      <yloc>432</yloc>
+      <xloc>944</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1531,7 +1803,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>C:\Users\bryan\repos-ucc\ucc-sd\data\Crime_Data_from_2020_to_Present_20240914-Pacific.csv</name>
+      <name>C:\Users\bryan\repos-ucc\ucc-sd\data\Crime_Data_from_2020_to_Present_20241010-Pacific.csv</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>csv</extention>
@@ -1606,8 +1878,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>915</xloc>
-      <yloc>305</yloc>
+      <xloc>928</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1636,7 +1908,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>C:\Users\bryan\repos-ucc\ucc-sd\data\Crime_Data_from_2020_to_Present_20240914-Rampart.csv</name>
+      <name>C:\Users\bryan\repos-ucc\ucc-sd\data\Crime_Data_from_2020_to_Present_20241010-Rampart.csv</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>csv</extention>
@@ -1711,8 +1983,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>928</xloc>
-      <yloc>656</yloc>
+      <xloc>944</xloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1741,7 +2013,322 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>C:\Users\bryan\repos-ucc\ucc-sd\data\Crime_Data_from_2020_to_Present_20240914-Southwest.csv</name>
+      <name>C:\Users\bryan\repos-ucc\ucc-sd\data\Crime_Data_from_2020_to_Present_20241010-Southwest.csv</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery/>
+    </file>
+    <fields>
+      <field>
+        <name>DR_NO</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>Date Rptd</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>22</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>AREA NAME</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>11</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Crm Cd Desc</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>56</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>944</xloc>
+      <yloc>624</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Text file output Devonshire</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <separator>;</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>C:\Users\bryan\repos-ucc\ucc-sd\data\Crime_Data_from_2020_to_Present_20241010-Devonshire.csv</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery/>
+    </file>
+    <fields>
+      <field>
+        <name>DR_NO</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>Date Rptd</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>22</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>AREA NAME</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>11</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Crm Cd Desc</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>56</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>944</xloc>
+      <yloc>736</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Text file output Olympic</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <separator>;</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>C:\Users\bryan\repos-ucc\ucc-sd\data\Crime_Data_from_2020_to_Present_20241010-Olympic.csv</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery/>
+    </file>
+    <fields>
+      <field>
+        <name>DR_NO</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>Date Rptd</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>22</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>AREA NAME</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>11</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Crm Cd Desc</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>56</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>944</xloc>
+      <yloc>848</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Text file output Van Nuys</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <separator>;</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>C:\Users\bryan\repos-ucc\ucc-sd\data\Crime_Data_from_2020_to_Present_20241010-Van_Nuys.csv</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>csv</extention>
@@ -1817,117 +2404,12 @@
     </remotesteps>
     <GUI>
       <xloc>928</xloc>
-      <yloc>768</yloc>
+      <yloc>976</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
     <name>Text file output Full</name>
-    <type>TextFileOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <separator>;</separator>
-    <enclosure>"</enclosure>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding/>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>C:\Users\bryan\repos-ucc\ucc-sd\data\Crime_Data_from_2020_to_Present_20240921-Full.csv</name>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>csv</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery/>
-    </file>
-    <fields>
-      <field>
-        <name>DR_NO</name>
-        <type>Integer</type>
-        <format>#</format>
-        <currency>$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>15</length>
-        <precision>0</precision>
-      </field>
-      <field>
-        <name>Date Rptd</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>22</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>AREA NAME</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>11</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>Crm Cd Desc</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>56</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1296</xloc>
-      <yloc>448</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Text file output Zip Full</name>
     <type>TextFileOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1951,7 +2433,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>C:\Users\bryan\repos-ucc\ucc-sd\data\Crime_Data_from_2020_to_Present_20240921-Full.csv</name>
+      <name>C:\Users\bryan\repos-ucc\ucc-sd\data\Crime_Data_from_2020_to_Present_20241010-Full.csv</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>csv</extention>
@@ -1993,6 +2475,42 @@
         <precision>-1</precision>
       </field>
       <field>
+        <name>DATE OCC</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>22</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>TIME OCC</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>AREA</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
         <name>AREA NAME</name>
         <type>String</type>
         <format/>
@@ -2003,6 +2521,42 @@
         <trim_type>none</trim_type>
         <length>11</length>
         <precision>-1</precision>
+      </field>
+      <field>
+        <name>Rpt Dist No</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>Part 1-2</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>Crm Cd</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
       </field>
       <field>
         <name>Crm Cd Desc</name>
@@ -2016,6 +2570,42 @@
         <length>56</length>
         <precision>-1</precision>
       </field>
+      <field>
+        <name>Mocodes</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>39</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Vict Age</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>Vict Sex</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>1</length>
+        <precision>-1</precision>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -2026,8 +2616,104 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1536</xloc>
-      <yloc>464</yloc>
+      <xloc>1280</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Table output</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>oracle/transformacion_1</connection>
+    <schema>ETL</schema>
+    <table>TRANSFORMACION_1</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>DR_NO</column_name>
+        <stream_name>DR_NO</stream_name>
+      </field>
+      <field>
+        <column_name>DATE_RPTD</column_name>
+        <stream_name>Date Rptd</stream_name>
+      </field>
+      <field>
+        <column_name>DATE_OCC</column_name>
+        <stream_name>DATE OCC</stream_name>
+      </field>
+      <field>
+        <column_name>TIME_OCC</column_name>
+        <stream_name>TIME OCC</stream_name>
+      </field>
+      <field>
+        <column_name>AREA</column_name>
+        <stream_name>AREA</stream_name>
+      </field>
+      <field>
+        <column_name>AREA_NAME</column_name>
+        <stream_name>AREA NAME</stream_name>
+      </field>
+      <field>
+        <column_name>RPT_DIST_NO</column_name>
+        <stream_name>Rpt Dist No</stream_name>
+      </field>
+      <field>
+        <column_name>Part_1-2</column_name>
+        <stream_name>Part 1-2</stream_name>
+      </field>
+      <field>
+        <column_name>CRM_CD</column_name>
+        <stream_name>Crm Cd</stream_name>
+      </field>
+      <field>
+        <column_name>CRM_CD_DESC</column_name>
+        <stream_name>Crm Cd Desc</stream_name>
+      </field>
+      <field>
+        <column_name>MOCODES</column_name>
+        <stream_name>Mocodes</stream_name>
+      </field>
+      <field>
+        <column_name>VICT_AGE</column_name>
+        <stream_name>Vict Age</stream_name>
+      </field>
+      <field>
+        <column_name>VICT_SEX</column_name>
+        <stream_name>Vict Sex</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1440</xloc>
+      <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
