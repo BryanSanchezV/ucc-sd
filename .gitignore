@@ -27,3 +27,6 @@ replay_pid*
 data/Crime_Data_from_2020_to_Present_20240914.csv
 
 *.zip
+*.bak
+build
+target
