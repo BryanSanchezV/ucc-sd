@@ -1,0 +1,1 @@
+docker run --rm bryansanchez/ejercicio-docker-03

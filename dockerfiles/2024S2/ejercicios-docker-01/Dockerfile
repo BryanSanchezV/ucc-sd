@@ -1,0 +1,2 @@
+FROM alpine:latest
+CMD echo "+-------------------------------------------------+" && echo "---Universidad Cooperativa de Colombia - 2024------" && echo "-------------ATT: Bryan Sanchez--------------------"

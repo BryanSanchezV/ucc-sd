@@ -1,0 +1,1 @@
+docker build -t bryansanchez/ejercicio-docker-03:latest .

@@ -1,1 +1,1 @@
-{"resources":{"Scripts/ddl-script.sql":{"default-datasource":"postgres-jdbc-192821eb49b-77b6dea7c33adea","default-catalog":"postgres","default-schema":"public"}}}
+{"resources":{"Scripts/ddl-Script.sql":{"default-datasource":"postgres-jdbc-192821eb49b-77b6dea7c33adea","default-catalog":"postgres","default-schema":"public"}}}
