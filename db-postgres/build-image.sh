@@ -1,0 +1,1 @@
+docker build -t bryansanchez/app-cliente-python:latest .

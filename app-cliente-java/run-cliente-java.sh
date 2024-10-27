@@ -1,0 +1,1 @@
+java -cp "libs/postgresql-42.7.4.jar:app-cliente-java.jar" co.edu.ucc.sd.RandomQueryApp
