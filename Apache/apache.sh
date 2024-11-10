@@ -1,0 +1,1 @@
+docker run --rm --name apache-ucc -p 8080:80 -d habolanos/apache-ucc

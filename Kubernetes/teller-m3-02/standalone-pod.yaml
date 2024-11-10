@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: standalone-pod
+  labels:
+    app: standalone-app
+spec:
+  containers:
+  - name: standalone-container
+    image: httpd:latest
+    ports:
+    - containerPort: 80

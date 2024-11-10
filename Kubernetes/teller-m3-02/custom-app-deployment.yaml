@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apache-ucc
+  labels:
+    app: apache-ucc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apache-ucc
+  template:
+    metadata:
+      labels:
+        app: apache-ucc
+    spec:
+      containers:
+      - name: apache-ucc-container
+        image: habolanos/apache-ucc # Reemplaza con tu imagen personalizada
+        ports:
+        - containerPort: 8080
