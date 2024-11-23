@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  pg_master:
+    build: ./pg_master
+    container_name: pg_master
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: main_db
+    volumes:
+      - pg_master_data:/var/lib/postgresql/data
+    networks:
+      - pg_network
+
+  pg_slave:
+    build: ./pg_slave
+    container_name: pg_slave
+    depends_on:
+      - pg_master
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: main_db
+    volumes:
+      - pg_slave_data:/var/lib/postgresql/data
+    networks:
+      - pg_network
+
+volumes:
+  pg_master_data:
+  pg_slave_data:
+
+networks:
+  pg_network:
