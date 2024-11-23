@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  contenedor:
+    image: postgres:latest
+    container_name: contenedor
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - contenedor_data:/var/lib/postgresql/data
+      - - ./master/postgresql.conf:/var/lib/postgresql/data/postgresql.conf  # Configuración de replicación
+    ports:
+      - "5432:5432"
+    networks:
+      - pg_network
+    command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
+
+  pg_slave:
+    image: postgres:latest
+    container_name: pg_slave
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - pg_slave_data:/var/lib/postgresql/data
+      - ./slave/postgresql.conf:/var/lib/postgresql/data/postgresql.conf  # Configuración de replicación
+    depends_on:
+      - contenedor
+    networks:
+      - pg_network
+    command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
+
+networks:
+  pg_network:
+    driver: bridge
+
+volumes:
+  contenedor_data:
+  pg_slave_data:
+
+services:
+  oracle_dw:
+    image: gvenzl/oracle-free:slim
+    container_name: oracle_dw
+    ports:
+      - "1521:1521" # Puerto para conectarse a la base de datos
+      - "5500:5500" # Puerto opcional para Enterprise Manager
+    environment:
+      - ORACLE_PASSWORD=oracle  # Cambia la contraseña si lo prefieres
+    volumes:
+      - oracle-data:/opt/oracle/oradata # Persistencia de datos
+    networks:
+      - distributed_network
+
+volumes:
+  oracle-data:
+
+networks:
+  distributed_network:
+    driver: bridge

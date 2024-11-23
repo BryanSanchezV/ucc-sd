@@ -1,7 +1,49 @@
 {
 	"folders": {},
 	"connections": {
-		"oracle_thin-1925e10cf2c-5ce0ac58c63a038": {
+		"postgres-jdbc-19359fe862a-564f8c6a9d02d4a0": {
+			"provider": "postgresql",
+			"driver": "postgres-jdbc",
+			"name": "ppal_db",
+			"save-password": true,
+			"configuration": {
+				"host": "localhost",
+				"port": "5432",
+				"database": "ppal_db",
+				"url": "jdbc:postgresql://localhost:5432/ppal_db",
+				"configurationType": "MANUAL",
+				"home": "postgresql_client",
+				"type": "dev",
+				"closeIdleConnection": true,
+				"provider-properties": {
+					"@dbeaver-show-non-default-db@": "false",
+					"@dbeaver-chosen-role@": ""
+				},
+				"auth-model": "native"
+			}
+		},
+		"postgres-jdbc-19359ff0a6e-443e4632f91850e7": {
+			"provider": "postgresql",
+			"driver": "postgres-jdbc",
+			"name": "slave2_db",
+			"save-password": true,
+			"configuration": {
+				"host": "localhost",
+				"port": "5433",
+				"database": "slave2_db",
+				"url": "jdbc:postgresql://localhost:5433/slave2_db",
+				"configurationType": "MANUAL",
+				"home": "postgresql_client",
+				"type": "dev",
+				"closeIdleConnection": true,
+				"provider-properties": {
+					"@dbeaver-show-non-default-db@": "false",
+					"@dbeaver-chosen-role@": ""
+				},
+				"auth-model": "native"
+			}
+		},
+		"oracle_thin-1935a0023c3-320d9fa1b69d035": {
 			"provider": "oracle",
 			"driver": "oracle_thin",
 			"name": "ORCL",
@@ -19,27 +61,6 @@
 					"@dbeaver-sid-service@": "SERVICE"
 				},
 				"auth-model": "oracle_native"
-			}
-		},
-		"postgres-jdbc-192821eb49b-77b6dea7c33adea": {
-			"provider": "postgresql",
-			"driver": "postgres-jdbc",
-			"name": "postgres-ppal",
-			"save-password": true,
-			"configuration": {
-				"host": "localhost",
-				"port": "5432",
-				"database": "postgres",
-				"url": "jdbc:postgresql://localhost:5432/postgres",
-				"configurationType": "MANUAL",
-				"home": "postgresql_client",
-				"type": "dev",
-				"closeIdleConnection": true,
-				"provider-properties": {
-					"@dbeaver-show-non-default-db@": "false",
-					"@dbeaver-chosen-role@": ""
-				},
-				"auth-model": "native"
 			}
 		}
 	},

@@ -1,0 +1,78 @@
+version: '3.9'
+
+services:
+  slave1:
+    image: postgres:latest
+    container_name: slave1
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ppal_db
+    ports:
+      - "5432:5432"
+    networks:
+      - db-network
+    volumes:
+      - ppal_data:/var/lib/postgresql/data
+      - ./init/ppal:/docker-entrypoint-initdb.d
+
+  slave2:
+    image: postgres:latest
+    container_name: slave2
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: slave2_db
+    ports:
+      - "5433:5432"
+    networks:
+      - db-network
+    volumes:
+      - slave_data:/var/lib/postgresql/data
+      - ./init/slave:/docker-entrypoint-initdb.d
+
+  oracleGvenz:
+    image: gvenzl/oracle-free:slim
+    container_name: oracleGvenz
+    environment:
+      ORACLE_PASSWORD: password
+      ORACLE_DATABASE: ORCL
+    ports:
+      - "1521:1521"
+    networks:
+      - db-network
+
+  cliente-cpp:
+    build:
+      context: ./cliente-cpp
+    depends_on:
+      - slave1
+    networks:
+      - db-network
+
+  cliente-java:
+    build:
+      context: ./cliente-java
+    depends_on:
+      - slave2
+    networks:
+      - db-network
+
+  etl:
+    build:
+      context: ./etl
+    container_name: etl-service
+    depends_on:
+      - slave1
+      - slave2
+      - oracleGvenz
+    networks:
+      - db-network
+
+volumes:
+  ppal_data:
+  slave_data:
+
+networks:
+  db-network:
+    driver: bridge

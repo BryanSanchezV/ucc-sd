@@ -1,0 +1,50 @@
+version: '3.9'
+
+services:
+  ppal-db:
+    image: postgres:latest
+    container_name: ppal-db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ppal_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ppal_data:/var/lib/postgresql/data
+      - ./init/ppal:/docker-entrypoint-initdb.d
+
+  slave-db:
+    image: postgres:latest
+    container_name: slave-db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: slave_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - slave_data:/var/lib/postgresql/data
+      - ./init/slave:/docker-entrypoint-initdb.d
+
+  oracle-dwh:
+    image: gvenzl/oracle-free:slim
+    container_name: oracle-dwh
+    environment:
+      ORACLE_PASSWORD: password
+      ORACLE_DATABASE: dwh
+    ports:
+      - "1521:1521"
+
+  etl:
+    build:
+      context: ./etl
+    container_name: etl-service
+    depends_on:
+      - ppal-db
+      - slave-db
+      - oracle-dwh
+
+volumes:
+  ppal_data:
+  slave_data:
